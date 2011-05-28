@@ -11,6 +11,7 @@ from ex5 import Television
 from ex6 import CurrentAccount
 from ex7 import GasolinePump
 from ex8 import Rectangle2
+from ex9 import Carnivorous
 
 class TestEx1(unittest.TestCase):
 
@@ -221,3 +222,24 @@ class TestEx8(unittest.TestCase):
         self.rectangle.base = 20
         self.rectangle.height = 10
         self.rectangle.is_square() |should| equal_to(False)
+
+
+class TestEx9(unittest.TestCase):
+
+    def setUp(self):
+        self.carnivorous = Carnivorous()
+
+    def test_eat_anything(self):
+        rectangle = Rectangle(20, 10)
+        self.carnivorous.eat(1) |should| equal_to([1])
+        self.carnivorous.eat('a') |should| equal_to([1, 'a'])
+        self.carnivorous.eat(rectangle) |should| equal_to([1, 'a', rectangle])
+
+    def test_digest(self):
+        rectangle = Rectangle(20, 10)
+        self.carnivorous.eat(1) |should| equal_to([1])
+        self.carnivorous.eat('a') |should| equal_to([1, 'a'])
+        self.carnivorous.eat(rectangle) |should| equal_to([1, 'a', rectangle])
+        self.carnivorous.digest() |should| equal_to(1)
+        self.carnivorous.digest() |should| equal_to('a')
+        self.carnivorous.stomach |should| equal_to([rectangle])
