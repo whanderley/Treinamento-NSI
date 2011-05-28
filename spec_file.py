@@ -12,6 +12,7 @@ from ex6 import CurrentAccount
 from ex7 import GasolinePump
 from ex8 import Rectangle2
 from ex9 import Carnivorous
+from ex10 import ComplexNumber
 
 class TestEx1(unittest.TestCase):
 
@@ -243,3 +244,25 @@ class TestEx9(unittest.TestCase):
         self.carnivorous.digest() |should| equal_to(1)
         self.carnivorous.digest() |should| equal_to('a')
         self.carnivorous.stomach |should| equal_to([rectangle])
+
+class TestEx10(unittest.TestCase):
+    
+    def setUp(self):
+        self.complex_number1 = ComplexNumber(2, 3)
+        self.complex_number2 = ComplexNumber(4, -6)
+
+    def test_addition(self):
+        self.complex_number1.add(self.complex_number2) |should| \
+         equal_to(complex(6, - 3))
+
+    def test_subtraction(self):
+        self.complex_number1.subtract(self.complex_number2) |should| \
+         equal_to(complex(-2, 9))
+
+    def test_multiplication(self):
+        self.complex_number1.multiplication(self.complex_number2) |should| \
+         equal_to(complex(26, 0))
+
+    def test_parse_to_string(self):
+        self.complex_number1.parse_to_string() |should| \
+            equal_to(str(complex(2, 3)))
