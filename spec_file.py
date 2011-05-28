@@ -10,6 +10,7 @@ from ex4 import Person
 from ex5 import Television
 from ex6 import CurrentAccount
 from ex7 import GasolinePump
+from ex8 import Rectangle2
 
 class TestEx1(unittest.TestCase):
 
@@ -161,7 +162,7 @@ class TestEx6(unittest.TestCase):
 
     def test_retire_20_in_account_with_10_should_return_not_enough_money(self):
         self.current_account.leftover = 10
-        self.current_account.retire(20) |should| equal_to("not enough money") 
+        self.current_account.retire(20) |should| equal_to("not enough money")
         self.current_account.leftover |should| equal_to(10)
 
 
@@ -192,3 +193,31 @@ class TestEx7(unittest.TestCase):
         self.gasoline_pump.supply_by_number_of_liters(30) |should| \
         equal_to('volume unavailable')
         self.gasoline_pump.volume |should| equal_to(20)
+
+
+class TestEx8(unittest.TestCase):
+
+    def setUp(self):
+        self.rectangle = Rectangle2(100, 40)
+
+    def test_query_coordinate_from_center(self):
+        self.rectangle.center |should| equal_to([50, 20])
+
+    def test_change_center(self):
+        self.rectangle.redefine_center(200, 40) |should| equal_to([200, 40])
+        self.rectangle.vertice1.x |should| equal_to(150)
+        self.rectangle.vertice2.x |should| equal_to(150)
+
+    def test_get_area_from_rectangle(self):
+        self.rectangle.area |should| equal_to(4000)
+
+    def test_get_perimeter_from_rectangle(self):
+        self.rectangle.perimeter |should| equal_to(280)
+
+    def test_is_square(self):
+        self.rectangle.base = 100
+        self.rectangle.height = 100
+        self.rectangle.is_square() |should| equal_to(True)
+        self.rectangle.base = 20
+        self.rectangle.height = 10
+        self.rectangle.is_square() |should| equal_to(False)
