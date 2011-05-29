@@ -13,6 +13,7 @@ from ex7 import GasolinePump
 from ex8 import Rectangle2
 from ex9 import Carnivorous
 from ex10 import ComplexNumber
+from ex11 import RacionalNumber
 
 class TestEx1(unittest.TestCase):
 
@@ -245,24 +246,58 @@ class TestEx9(unittest.TestCase):
         self.carnivorous.digest() |should| equal_to('a')
         self.carnivorous.stomach |should| equal_to([rectangle])
 
+
 class TestEx10(unittest.TestCase):
-    
+
     def setUp(self):
         self.complex_number1 = ComplexNumber(2, 3)
         self.complex_number2 = ComplexNumber(4, -6)
 
     def test_addition(self):
-        self.complex_number1.add(self.complex_number2) |should| \
-         equal_to(complex(6, - 3))
+        self.complex_number1 + self.complex_number2 |should| \
+         equal_to(ComplexNumber(6, -3))
 
     def test_subtraction(self):
-        self.complex_number1.subtract(self.complex_number2) |should| \
-         equal_to(complex(-2, 9))
+        self.complex_number1 - self.complex_number2 |should| equal_to(ComplexNumber(-2, 9))
 
     def test_multiplication(self):
-        self.complex_number1.multiplication(self.complex_number2) |should| \
-         equal_to(complex(26, 0))
+        self.complex_number1 * self.complex_number2 |should| equal_to(ComplexNumber(26, 0))
 
     def test_parse_to_string(self):
-        self.complex_number1.parse_to_string() |should| \
-            equal_to(str(complex(2, 3)))
+        self.complex_number1.parse_to_string() |should| equal_to('2 + 3i')
+
+class TestEx11(unittest.TestCase):
+
+    def setUp(self):
+        self.racional_number1 = RacionalNumber(3, 4)
+        self.racional_number2 = RacionalNumber(4, 2)
+
+    def test_consult_denominador_and_numerator_from_racional_number1(self):
+        self.racional_number1.numerator |should| equal_to(3)
+        self.racional_number1.denominador |should| equal_to(4)
+
+    def test_consult_denominador_and_numerator_from_racional_number2(self):
+        self.racional_number2.numerator |should| equal_to(2)
+        self.racional_number2.denominador |should| equal_to(1)
+
+    def test_addition(self):
+        self.racional_number1 + self.racional_number2 |should| \
+         equal_to(RacionalNumber(11, 4))
+
+    def test_subtraction(self):
+        self.racional_number1 - self.racional_number2 |should| \
+         equal_to(RacionalNumber(-5, 4))
+
+    def test_multiplication(self):
+        self.racional_number1 * self.racional_number2 |should| \
+         equal_to(RacionalNumber(3, 2))
+
+    def test_division(self):
+        self.racional_number1 / self.racional_number2 |should| \
+         equal_to(RacionalNumber(6, 16))
+
+    def test_parse_to_string(self):
+        self.racional_number1.string |should| equal_to('3/4')
+
+    def test_parse_to_float_string(self):
+        self.racional_number1.float_string(3) |should| equal_to('0.75')
