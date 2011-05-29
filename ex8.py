@@ -25,12 +25,10 @@ class Rectangle2(object):
         return self.center
 
     @property
-
     def area(self):
         return self.base * self.height
 
     @property
-
     def perimeter(self):
         return (self.base + self.height) * 2
 
