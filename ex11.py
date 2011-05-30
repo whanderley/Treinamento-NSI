@@ -4,53 +4,53 @@
 
 class RacionalNumber(object):
 
-    def __init__(self, numerator, denominador):
-        self.reduced_form(numerator, denominador)
+    def __init__(self, numerator, denominator):
+        self.reduced_form(numerator, denominator)
 
     def __eq__(self, racional_number):
         return self.numerator == racional_number.numerator and \
-        self.denominador == racional_number.denominador
+        self.denominator == racional_number.denominator
 
     def __add__(self, racional_number):
-        numerator = self.numerator * racional_number.denominador + \
-        racional_number.numerator * self.denominador
-        denominador = self.denominador * racional_number.denominador
-        return RacionalNumber(numerator, denominador)
+        numerator = self.numerator * racional_number.denominator + \
+        racional_number.numerator * self.denominator
+        denominator = self.denominator * racional_number.denominator
+        return RacionalNumber(numerator, denominator)
 
     def __sub__(self, racional_number):
-        numerator = self.numerator * racional_number.denominador - \
-        racional_number.numerator * self.denominador
-        denominador = self.denominador * racional_number.denominador
-        return RacionalNumber(numerator, denominador)
+        numerator = self.numerator * racional_number.denominator - \
+        racional_number.numerator * self.denominator
+        denominator = self.denominator * racional_number.denominator
+        return RacionalNumber(numerator, denominator)
 
     def __mul__(self, racional_number):
         numerator = self.numerator * racional_number.numerator
-        denominador = self.denominador * racional_number.denominador
-        return RacionalNumber(numerator, denominador)
+        denominator = self.denominator * racional_number.denominator
+        return RacionalNumber(numerator, denominator)
 
     def __div__(self, racional_number):
-        numerator = self.numerator * racional_number.denominador
-        denominador = self.denominador * racional_number.numerator
-        return RacionalNumber(numerator, denominador)
+        numerator = self.numerator * racional_number.denominator
+        denominator = self.denominator * racional_number.numerator
+        return RacionalNumber(numerator, denominator)
 
     @property
     def string(self):
-        return '%s/%s' %(self.numerator, self.denominador)
+        return '%s/%s' % (self.numerator, self.denominator)
 
     def float_string(self, lenght):
-        number = self.numerator / float(self.denominador)
+        number = self.numerator / float(self.denominator)
         return str(number)[:lenght + 1]
 
-    def reduced_form(self, numerator, denominador):
+    def reduced_form(self, numerator, denominator):
         divisor = None
         i = 2
-        while i <= numerator and i <= denominador:
-            if denominador % i == 0 and numerator % i == 0:
+        while i <= numerator and i <= denominator:
+            if denominator % i == 0 and numerator % i == 0:
                 divisor = i
             i += 1
         if divisor:
             self.numerator = (numerator / divisor)
-            self.denominador = (denominador / divisor)
+            self.denominator = (denominator / divisor)
         else:
             self.numerator = numerator
-            self.denominador = denominador
+            self.denominator = denominator

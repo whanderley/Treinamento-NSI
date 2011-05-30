@@ -16,8 +16,8 @@ class GasolinePump(object):
     def supply_by_value(self, value):
         if round(value / self.price_per_liter) > self.volume:
             return 'volume unavailable'
-        self.volume -= round(value / self.price_per_liter)
-        return round(value / self.price_per_liter)
+        self.volume -= round(value / float(self.price_per_liter))
+        return round(value / float(self.price_per_liter))
 
     def supply_by_number_of_liters(self, volume):
         if volume > self.volume:

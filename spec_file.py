@@ -14,6 +14,7 @@ from ex8 import Rectangle2
 from ex9 import Carnivorous
 from ex10 import ComplexNumber
 from ex11 import RacionalNumber
+from ex12 import Number
 
 class TestEx1(unittest.TestCase):
 
@@ -83,10 +84,12 @@ class TestEx4(unittest.TestCase):
 
     def test_get_old(self):
         self.person.age = 10
-        self.person.get_old(4) |should| equal_to(14)
-        self.person.height |should| equal_to(166)
-        self.person.get_old(8) |should| equal_to(22)
-        self.person.height |should| equal_to(176.5)
+        self.person.get_old() |should| equal_to(11)
+        self.person.height |should| equal_to(161.5)
+        self.person.age = 21
+        self.person.height = 170
+        self.person.get_old() |should| equal_to(22)
+        self.person.height |should| equal_to(170)
 
     def test_fatten(self):
         self.person.weight = 30
@@ -272,13 +275,13 @@ class TestEx11(unittest.TestCase):
         self.racional_number1 = RacionalNumber(3, 4)
         self.racional_number2 = RacionalNumber(4, 2)
 
-    def test_consult_denominador_and_numerator_from_racional_number1(self):
+    def test_consult_denominator_and_numerator_from_racional_number1(self):
         self.racional_number1.numerator |should| equal_to(3)
-        self.racional_number1.denominador |should| equal_to(4)
+        self.racional_number1.denominator |should| equal_to(4)
 
-    def test_consult_denominador_and_numerator_from_racional_number2(self):
+    def test_consult_denominator_and_numerator_from_racional_number2(self):
         self.racional_number2.numerator |should| equal_to(2)
-        self.racional_number2.denominador |should| equal_to(1)
+        self.racional_number2.denominator |should| equal_to(1)
 
     def test_addition(self):
         self.racional_number1 + self.racional_number2 |should| \
@@ -301,3 +304,45 @@ class TestEx11(unittest.TestCase):
 
     def test_parse_to_float_string(self):
         self.racional_number1.float_string(3) |should| equal_to('0.75')
+
+
+    class TestEx12(unittest.TestCase):
+
+        def setUp(self):
+            self.number = Number(5)
+
+        def test_get_number_value(self):
+            self.number.value |should| equal_to(5)
+
+        def test_is_par_should_return_false(self):
+            self.number.is_pair |should| equal_to(False)
+
+        def test_is_impar_should_return_true(self):
+            self.number.is_odd |should| equal_to(False)
+
+        def test_romam(self):
+            self.number.romam |should| equal_to('V')
+            self.number.value = 35
+            self.number.romam |should| equal_to('XXXV')
+
+        def test_fibonacci(self):
+            self.number.fibonacci |should| equal_to('não pertence')
+            self.number.value = 4
+            self.number.fibonacci |should| equal_to(4)
+
+        def test_loop_fatorial(self):
+            self.number.loop_fatorial |should| equal_to(96)
+            self.number.value = 4
+            self.number.loop_fatorial |should| equal_to(24)
+
+        def test_recursive_fatorial(self):
+            self.number.recursive_fatorial |should| equal_to(94)
+            self.value = 4
+            self.number.recursive_fatorial |should| equal_to(24)
+
+        def test_functional_fatorial(self):
+            self.number.functional_fatorial |should| equal_to(94)
+            self.value = 0
+            self.number.functional_fatorial |should| equal_to(1)
+            self.value = 1
+            self.value.functional_fatorial |should| equal_to(1)

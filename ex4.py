@@ -8,12 +8,10 @@ class Person(object):
         self.weight = weight
         self.height = height
 
-    def get_old(self, past_years):
-        if self.age + past_years < 21:
-            self.height += past_years * 1.5
-        else:
-            self.height += (21 - self.age) * 1.5
-        self.age += past_years
+    def get_old(self):
+        self.age += 1
+        if self.age <= 21:
+            self.height += 1.5
         return self.age
 
     def fatten(self, kg):
