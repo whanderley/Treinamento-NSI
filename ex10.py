@@ -36,7 +36,7 @@ class ComplexNumber(object):
         imaginary_part = ((self.imaginary_part * complex_number.real_part -
          self.real_part * complex_number.imaginary_part) / float(
            complex_number.real_part ** 2 + complex_number.imaginary_part ** 2))
-        return ComplexNumber(round(real_part, 2), round(imaginary_part, 1))
+        return ComplexNumber(real_part, imaginary_part)
 
     def parse_to_string(self):
         if self.imaginary_part > 0:

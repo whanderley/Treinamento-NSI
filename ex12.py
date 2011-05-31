@@ -11,14 +11,15 @@ class Number(object):
 
     @property
     def romam(self):
-        value = self.value
-        romans = {1000:'M', 900:'CM', 500:'D', 400:'CD', 100:'C', 90:'XC', 
-                    50:'L', 40:'XL', 10:'X', 9:'IX', 5:'V', 4:'IV', 1:'I'}
         roman_number = ''
-        for number in romans:
+        value = self.value
+        numbers = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+        roman_numbers = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 
+               'V', 'IV', 'I']
+        for i, number in enumerate(numbers):
             while value >= number:
                 value -= number
-                roman_number += romans[number]
+                roman_number += roman_numbers[i]
         return roman_number
 
     @property
@@ -26,23 +27,25 @@ class Number(object):
         fibonacci = [1, 1]
         while 1:
             if self.value == fibonacci[-1]: return len(fibonacci)
-            if fibonacci[-1] > self.value: return 'não pertence'
+            if fibonacci[-1] > self.value: return 'nao pertence'
             fibonacci.append(fibonacci[-1] + fibonacci[-2])
-
+            
     @property
     def loop_fatorial(self):
-        fatorial = 0
-        if self.value < 2: return 1
+        fatorial = 1
+        if self.value < 2: 
+            return 1
         for i in range(2, self.value + 1):
             fatorial *= i
         return fatorial
 
     @property
     def recursive_fatorial(self):
-        if self.value < 2: return 1
-        return self.value * Number(self.value -1).recursive_fatorial()
-
+        def calculate(num):
+            return 1 if num < 2 else num * calculate(num - 1) 
+        return  calculate(self.value)
+        
     @property
     def functional_fatorial(self):
         return 1 if self.value < 2 else \
-        reduce(lambda x, y: x * y, range(1, self.value + 1))
+               reduce(lambda x, y: x * y, range(1, self.value + 1))
